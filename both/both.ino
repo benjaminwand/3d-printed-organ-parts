@@ -8,6 +8,8 @@ analog 2: y-axis
 analog 3: z-axis
 
 analog 0: touch sensor, with 4,7k resistor
+
+motor is connexted on pin 7 (IN2), 8 (IN1) and 9 (ENA)
 */
 
 int MotorSpeed = 200;
