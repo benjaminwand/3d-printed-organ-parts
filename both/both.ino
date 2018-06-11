@@ -6,13 +6,18 @@ The circuit:
 analog 1: x-axis
 analog 2: y-axis
 analog 3: z-axis
+
 analog 0: touch sensor, with 4,7k resistor
 */
+
+int analogPin = 0;            // analog pin 0 for touch sensor
+int val = 0;                  // variable
 const int xpin = 1;           // x-axis of the accelerometer
 const int ypin = 2;           // y-axis
 const int zpin = 3;           // z-axis (only on 3-axis models)
-int analogPin = 0;            // analog pin 0 for touch sensor
-int val = 0;                  // variable
+int enA = 9;       // connect motor controller pins to Arduino digital pins
+int in1 = 8;
+int in2 = 7;
 
 void setup()
 {
@@ -48,5 +53,10 @@ Serial.print(((float)z - 340)/68*9.8);  //print z value on serial monitor
 Serial.print("\t");
 Serial.print(val);
 Serial.print("\n");
+
+digitalWrite(in1, HIGH);
+digitalWrite(in2, LOW);
+analogWrite(enA, 200);
+
 delay(500);
 }
