@@ -6,12 +6,13 @@ The circuit:
 analog 1: x-axis
 analog 2: y-axis
 analog 3: z-axis
+analog 0: touch sensor, with 4,7k resistor
 */
-const int xpin = 1;                  // x-axis of the accelerometer
-const int ypin = 2;                  // y-axis
-const int zpin = 3;                  // z-axis (only on 3-axis models)
-int analogPin = 0;                   // analog pin 0 for touch sensor
-int val = 0;                         // variable
+const int xpin = 1;           // x-axis of the accelerometer
+const int ypin = 2;           // y-axis
+const int zpin = 3;           // z-axis (only on 3-axis models)
+int analogPin = 0;            // analog pin 0 for touch sensor
+int val = 0;                  // variable
 
 void setup()
 {
