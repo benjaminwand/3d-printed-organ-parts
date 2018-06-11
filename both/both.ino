@@ -14,13 +14,15 @@ motor is connexted on pin 7 (IN2), 8 (IN1) and 9 (ENA)
 
 int MotorSpeed = 200;
 int Pressure = 0;         
-const int analogPin = 0;      // analog pin 0 for touch sensor        
-const int xpin = 1;           // x-axis of the accelerometer
-const int ypin = 2;           // y-axis
-const int zpin = 3;           // z-axis (only on 3-axis models)
-const int enA = 9;       // connect motor controller pins to Arduino digital pins
-const int in1 = 8;
-const int in2 = 7;
+#define ADXL_XPIN 1          /* x-axis of the accelerometer */
+#define ADXL_YPIN 2          /* y-axis */
+#define ADXL_ZPIN 3          /* z-axis (only on 3-axis models) */
+// motor controller pins
+#define MOTOR_ENA 9
+#define MOTOR_IN1 8
+#define MOTOR_IN2 7
+// analog pin 0 for touch sensor
+#define PRESSURE_SENSOR_PIN 0   
 
 void setup()
 {
@@ -30,36 +32,45 @@ void setup()
 
 void loop()
 {
- int x = analogRead(xpin);  //read from xpin
+ int x = analogRead(ADXL_XPIN);  //read from ADXL_XPIN
  
- int y = analogRead(ypin);  //read from ypin
+ int y = analogRead(ADXL_YPIN);  //read from ADXL_YPIN
  
- int z = analogRead(zpin);  //read from zpin
+ int z = analogRead(ADXL_ZPIN);  //read from ADXL_ZPIN
  
 float zero_G = 512.0; //ADC is 0~1023  the zero g output equal to Vs/2
                       //ADXL335 power supply by Vs 3.3V
 float scale = 102.3;  //ADXL335330 Sensitivity is 330mv/g
                        //330 * 1024/3.3/1000  
-Pressure = analogRead(analogPin); // read touch sensor
-
+Pressure = analogRead(PRESSURE_SENSOR_PIN); // read touch sensor
+ 
 /*Serial.print(x); 
 Serial.print("\t");
 Serial.print(y);
 Serial.print("\t");
 Serial.print(z);  
 Serial.print("\n");*/
-Serial.print(((float)x - 331.5)/65*9.8);  //print x Pressureue on serial monitor
+Serial.print(((float)x - 331.5)/65*9.8);  //print x value on serial monitor
 Serial.print("\t");
-Serial.print(((float)y - 329.5)/68.5*9.8);  //print y Pressureue on serial monitor
+Serial.print(((float)y - 329.5)/68.5*9.8);  //print y value on serial monitor
 Serial.print("\t");
-Serial.print(((float)z - 340)/68*9.8);  //print z Pressureue on serial monitor
+Serial.print(((float)z - 340)/68*9.8);  //print z value on serial monitor
 Serial.print("\t");
 Serial.print(Pressure);
 Serial.print("\n");
 
-digitalWrite(in1, HIGH);
-digitalWrite(in2, LOW);
-analogWrite(enA, 0);
+if (y > 8)    // that means bellow is too empty, 8 would be parallel
+  {
+    if (MotorSpeed > 0) MotorSpeed =-10;
+  }
+  else
+  {
+    if (MotorSpeed < 250) MotorSpeed =+ 10;
+  }
+
+digitalWrite(MOTOR_IN1, HIGH);
+digitalWrite(MOTOR_IN2, LOW);
+analogWrite(MOTOR_ENA, MotorSpeed);
 
 delay(500);
 }
