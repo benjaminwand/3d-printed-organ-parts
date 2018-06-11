@@ -38,10 +38,6 @@ void loop()
  
  int z = analogRead(ADXL_ZPIN);  //read from ADXL_ZPIN
  
-float zero_G = 512.0; //ADC is 0~1023  the zero g output equal to Vs/2
-                      //ADXL335 power supply by Vs 3.3V
-float scale = 102.3;  //ADXL335330 Sensitivity is 330mv/g
-                       //330 * 1024/3.3/1000  
 Pressure = analogRead(PRESSURE_SENSOR_PIN); // read touch sensor
  
 /*Serial.print(x); 
@@ -50,22 +46,24 @@ Serial.print(y);
 Serial.print("\t");
 Serial.print(z);  
 Serial.print("\n");*/
-Serial.print(((float)x - 331.5)/65*9.8);  //print x value on serial monitor
+Serial.print(x);  //print x value on serial monitor
 Serial.print("\t");
-Serial.print(((float)y - 329.5)/68.5*9.8);  //print y value on serial monitor
+Serial.print(y);  //print y value on serial monitor
 Serial.print("\t");
-Serial.print(((float)z - 340)/68*9.8);  //print z value on serial monitor
+Serial.print(z);  //print z value on serial monitor
 Serial.print("\t");
 Serial.print(Pressure);
+Serial.print("\t");
+Serial.print(MotorSpeed);
 Serial.print("\n");
 
-if (y > 8)    // that means bellow is too empty, 8 would be parallel
+if (y > 315)    // that means bellow is too empty, 8 would be parallel
   {
-    if (MotorSpeed > 0) MotorSpeed =-10;
+    if (MotorSpeed > 0) MotorSpeed -=10;
   }
-  else
+else
   {
-    if (MotorSpeed < 250) MotorSpeed =+ 10;
+    if (MotorSpeed < 250) MotorSpeed += 10;
   }
 
 digitalWrite(MOTOR_IN1, HIGH);
