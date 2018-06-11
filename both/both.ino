@@ -40,12 +40,7 @@ void loop()
  
 Pressure = analogRead(PRESSURE_SENSOR_PIN); // read touch sensor
  
-/*Serial.print(x); 
-Serial.print("\t");
-Serial.print(y);
-Serial.print("\t");
-Serial.print(z);  
-Serial.print("\n");*/
+
 Serial.print(x);  //print x value on serial monitor
 Serial.print("\t");
 Serial.print(y);  //print y value on serial monitor
