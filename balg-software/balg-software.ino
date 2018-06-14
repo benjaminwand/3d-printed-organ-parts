@@ -52,9 +52,9 @@ Serial.print("\t");
 Serial.print(MotorSpeed);
 Serial.print("\n");
 
-if (y > 315)    // that means bellow is too empty, 8 would be parallel
+if (y > 330)    // that means bellow is too empty
   {
-    if (MotorSpeed > 0) MotorSpeed -=10;
+    if (MotorSpeed > 10) MotorSpeed -=10;
   }
 else
   {
