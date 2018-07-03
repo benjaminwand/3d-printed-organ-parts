@@ -9,3 +9,4 @@ These are various prametric FreeCAD files of 3d-printable organ parts.
 Measuring air pressure in mmH2O https://www.youtube.com/watch?v=7snXdEoY9dA
 
 Exploring the Nachtigall/Vogelschrey stop https://www.youtube.com/watch?v=Vtcz-5irMgw
+‘Nachtigall2’ is less annoyingly synchronous when playing more than one pipe at once.
