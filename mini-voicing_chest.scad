@@ -3,7 +3,7 @@
 meter_diameter = [11, 8]; 
 
 // outer and inner diameters of all tubes towards the pipes
-tubes = [ [11, 8], [11, 8], [11, 8], [11, 8],       
+tubes = [ [11, 8], [11, 8], [11, 8], [11, 8], [11, 8], [11, 8],       
 [16, 12], [16, 12],
 [8, 6], [8, 6]];
 
@@ -31,7 +31,7 @@ echo(tubes_X=tubes_X);
 case_points = [ [0, -98.5, 1.5], [0, 98.5, 1.5], [0, -98.5, 200], [0, 98.5, 200], [-20, -98.5, 1.5], [-20, 98.5, 1.5], [-3, -98.5, 200], [-3, 98.5, 200] ];
 
 // bellow case
-%difference(){
+difference(){
     union(){                           // plus
         union(){                                // case towards bellow
             hull(){                         // towards voice chest
@@ -103,6 +103,15 @@ case_points = [ [0, -98.5, 1.5], [0, 98.5, 1.5], [0, -98.5, 200], [0, 98.5, 200]
         for (i= [0:10:200])
         translate([meter_diameter[0] +1.8, -meter_diameter[0] - 14, i])   //ruler
             cube([1, 13, 1], false);
+        translate([-5, 0, 0])
+            rotate([0, 90, 0])
+                linear_extrude(tubes_X[len(tubes) -1] + wideOuter/2 + 8) 
+                    polygon(points = [
+                        [0, -0.1], 
+                        [-60, 0], 
+                        [-60, 35], 
+                        [0, 35]
+                    ]);
     };
     union(){                // minus
                             //tube holder  
@@ -123,7 +132,7 @@ case_points = [ [0, -98.5, 1.5], [0, 98.5, 1.5], [0, -98.5, 200], [0, 98.5, 200]
         for (i = [1 : 5])
             translate([2.5, 0, 25*i + 20])
                 rotate ([90, 0, 0]) cylinder(50, 1, 1, false);
-    };
+
         translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]/2 - 3, 191 - meter_diameter[1]/2 - meter_diameter[1]/2])
             cylinder (10, meter_diameter[1]/2, meter_diameter[1]/2);
         translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*1.5 - 13, 191 - meter_diameter[1]/2 - meter_diameter[1]/2])
@@ -154,34 +163,39 @@ case_points = [ [0, -98.5, 1.5], [0, 98.5, 1.5], [0, -98.5, 200], [0, 98.5, 200]
             cylinder (0.01, meter_diameter[0], meter_diameter[0]);
     }; 
         
-    translate([0, 97.5, 0])
-    rotate([90, 0, 0])
-    linear_extrude(95.5) 
-        polygon(points = [
-            [1.5, 202], 
-            [1.5, 165], 
-            [28, 192], 
-            [28, 202]
-        ]);
+        translate([0, 97.5, 0])
+        rotate([90, 0, 0])
+        linear_extrude(95.5) 
+            polygon(points = [
+                [1.5, 202], 
+                [1.5, 165], 
+                [28, 192], 
+                [28, 202]
+            ]);
+    
+    for (i = [0 : len(tubes) -1])
+        translate ([tubes_X[i], 15, 20]) cylinder(50, wideOuter/2, wideOuter/2, false);            
+    
+    translate([-5, 0, 0])
+        rotate([0, 90, 0])
+            linear_extrude(tubes_X[len(tubes) -1] + wideOuter/2 + 5) 
+                polygon(points = [
+                    [-1.5, 1.5], 
+                    [-1.5, 28.5], 
+                    [-20.05, 15 + wideOuter*0.4], 
+                    [-20.05, 15 - wideOuter*0.4]
+                ]);
+    
+    for (i = [0 : len(tubes) -1])
+    translate ([tubes_X[i], 45, 40]) rotate ([90, 0, 0]) cylinder(20, tubes[i][0]/2, tubes[i][0]/2, false);
+    
+    for (i = [0 : len(tubes) -1])
+    translate ([tubes_X[i], 25.5, 40]) rotate ([90, 0, 0]) cylinder(11, tubes[i][1]/2, wideOuter/2, false);
+    };
 };
 
-for (i = [0 : len(tubes) -1])
-    translate ([tubes_X[i], 15, 20]) cylinder(50, wideOuter/2, wideOuter/2, false);            
-
-translate([-5, 0, 0])
-    rotate([0, 90, 0])
-        linear_extrude(tubes_X[len(tubes) -1] + wideOuter/2 + 5) 
-            polygon(points = [
-                [-1.5, 1.5], 
-                [-1.5, 28.5], 
-                [-20.05, 15 + wideOuter*0.4], 
-                [-20.05, 15 - wideOuter*0.4]
-            ]);
-
-for (i = [0 : len(tubes) -1])
-translate ([tubes_X[i], 45, 40]) rotate ([90, 0, 0]) cylinder(20, tubes[i][0]/2, tubes[i][0]/2, false);
 /*
 todo:
-windlade
+rendert nicht richtig, irgendwas ist komisch hier
 code besser kommentieren
 */
