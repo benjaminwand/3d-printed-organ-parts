@@ -3,6 +3,8 @@
 meter_diameter = [11, 8]; 
 
 // outer and inner diameters of all tubes towards the pipes
+// by the way, it doesn't make a lot of sense using pipes 
+// where the inside is much wider than the outside of he valves pipes
 tubes = [ [11, 8], [11, 8], [11, 8], [11, 8], [11, 8], [11, 8],       
 [16, 12], [16, 12],
 [8, 6], [8, 6]];
@@ -75,6 +77,7 @@ difference(){
                 translate(case_points[6])sphere(1.5);
                 translate(case_points[7])sphere(1.5);
             };
+            translate([-20, -98.5, 0]) cube ([20, 197, 0.5], false);
         };
             rotate([90, 0, 0])
                 linear_extrude(meter_diameter[0]*3.5 + 15) 
@@ -108,9 +111,11 @@ difference(){
                 linear_extrude(tubes_X[len(tubes) -1] + wideOuter/2 + 8) 
                     polygon(points = [
                         [0, -0.1], 
-                        [-60, 0], 
-                        [-60, 35], 
-                        [0, 35]
+                        [-60, 15 - 2 - wideOuter/2], 
+                        [-60, 15 + 2 + wideOuter/2],
+                        [-50, 35], 
+                        [-30, 35],
+                        [0, 30]
                     ]);
     };
     union(){                // minus
@@ -196,6 +201,5 @@ difference(){
 
 /*
 todo:
-rendert nicht richtig, irgendwas ist komisch hier
 code besser kommentieren
 */
