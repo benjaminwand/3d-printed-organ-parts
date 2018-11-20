@@ -1,6 +1,6 @@
 
 // outer and inner diameter of tube for the barometer
-meter_diameter = [11, 8]; 
+meter_diam = [11, 8]; 
 
 // outer and inner diameters of all tubes towards the pipes
 // by the way, it doesn't make a lot of sense using pipes 
@@ -87,15 +87,15 @@ difference(){
         };
         union(){                            // tube holders
             rotate([90, 0, 0])                  // upper tube holder
-                linear_extrude(meter_diameter[0]*3.5 + 15) 
+                linear_extrude(meter_diam[0]*3.5 + 15) 
                     polygon(points = [
                         [0, height ], 
                         [0, height - 40], 
-                        [meter_diameter[0] + 5, meter_diameter[0] + height - 35], 
-                        [meter_diameter[0] + 5, height ]
+                        [meter_diam[0] + 5, meter_diam[0] + height - 35], 
+                        [meter_diam[0] + 5, height ]
                     ]);
-            translate ([0, meter_diameter[0] * -2 - 15], 0) // lower tube holder
-                cube ([meter_diameter[0] + 5 , meter_diameter[0] * 2 + 15, 20], false);
+            translate ([0, meter_diam[0] * -2 - 15], 0) // lower tube holder
+                cube ([meter_diam[0] + 5 , meter_diam[0] * 2 + 15, 20], false);
         };
         translate([0, 100, 0])              // bassin outside
             rotate([90, 0, 0])
@@ -107,13 +107,13 @@ difference(){
                         [30, height ]
                     ]);
         union(){                             //ruler
-            translate([0, -meter_diameter[0] - 14, meter_diameter[1]/2 +7.5])  
-                cube([meter_diameter[0] +2, 13, height - 7.5 - meter_diameter[1]/2], false);
+            translate([0, -meter_diam[0] - 14, meter_diam[1]/2 +7.5])  
+                cube([meter_diam[0] +2, 13, height - 7.5 - meter_diam[1]/2], false);
             for (i= [0:2:(height-10)])
-            translate([meter_diameter[0] +1.4, -meter_diameter[0] - 14, i])   
+            translate([meter_diam[0] +1.4, -meter_diam[0] - 14, i])   
                 cube([1, 13, 1], false);
             for (i= [0:10:(height-10)])
-            translate([meter_diameter[0] +1.8, -meter_diameter[0] - 14, i])   
+            translate([meter_diam[0] +1.8, -meter_diam[0] - 14, i])   
                 cube([1, 13, 1], false);
         };
             rotate([0, 90, 0])              // windchest outside
@@ -129,55 +129,55 @@ difference(){
     };
     union(){                // minus                             
         union(){            // barometer tube spacers
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]/2 - 3, meter_diameter[1]/2 +7.5])
-                cylinder (height - 30, meter_diameter[0]/2, meter_diameter[0]/2);
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*1.5 - 13, meter_diameter[1]/2 +7.5])
-                cylinder (height - 30, meter_diameter[0]/2, meter_diameter[0]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]/2 - 3, meter_diam[1]/2 +7.5])
+                cylinder (height - 30, meter_diam[0]/2, meter_diam[0]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*1.5 - 13, meter_diam[1]/2 +7.5])
+                cylinder (height - 30, meter_diam[0]/2, meter_diam[0]/2);
         };
         union(){            // lower barometer action
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]/2 - 3, meter_diameter[1]/2 +2])
-                cylinder (6, meter_diameter[1]/2, meter_diameter[1]/2);
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*1.5 - 13, meter_diameter[1]/2 +2])
-                cylinder (6, meter_diameter[1]/2, meter_diameter[1]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]/2 - 3, meter_diam[1]/2 +2])
+                cylinder (6, meter_diam[1]/2, meter_diam[1]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*1.5 - 13, meter_diam[1]/2 +2])
+                cylinder (6, meter_diam[1]/2, meter_diam[1]/2);
             hull(){
-                translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*1.5 - 13, meter_diameter[1]/2 +2])
-                    sphere(meter_diameter[1]/2);
-                translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]/2 - 3, meter_diameter[1]/2 +2])
-                    sphere(meter_diameter[1]/2);
+                translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*1.5 - 13, meter_diam[1]/2 +2])
+                    sphere(meter_diam[1]/2);
+                translate([meter_diam[0]/2 + 1.5, -meter_diam[0]/2 - 3, meter_diam[1]/2 +2])
+                    sphere(meter_diam[1]/2);
             };
         };
         for (i = [1 : 5])   // spacers for nylon string
             translate([2.5, 0, 25*i + 20])
                 rotate ([90, 0, 0]) cylinder(50, 1, 1, false);
         union(){                    // upper barometer action
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]/2 - 3, height - 9 - meter_diameter[1]/2 - meter_diameter[1]/2])
-                cylinder (10, meter_diameter[1]/2, meter_diameter[1]/2);
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*1.5 - 13, height - 9 - meter_diameter[1]/2 - meter_diameter[1]/2])
-                cylinder (10, meter_diameter[1]/2, meter_diameter[1]/2);
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]/2 - 3, height - 37 - meter_diameter[1]/2 - meter_diameter[1]/2])
-                cylinder (28.01, meter_diameter[0]/2, meter_diameter[0]/2);
-            translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*1.5 - 13, height - 35 - meter_diameter[1]/2 - meter_diameter[1]/2])
-                cylinder (30.01, meter_diameter[0]/2, meter_diameter[0]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]/2 - 3, height - 9 - meter_diam[1]])
+                cylinder (10, meter_diam[1]/2, meter_diam[1]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*1.5 - 13, height - 9 - meter_diam[1]])
+                cylinder (10, meter_diam[1]/2, meter_diam[1]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]/2 - 3, height - 37 - meter_diam[1]])
+                cylinder (28.01, meter_diam[0]/2, meter_diam[0]/2);
+            translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*1.5 - 13, height - 35 - meter_diam[1]])
+                cylinder (30.01, meter_diam[0]/2, meter_diam[0]/2);
             hull(){
-                translate([meter_diameter[0]/2 + 3, 2, height])
-                    sphere(meter_diameter[0]/2 + 1.5);
-                translate([meter_diameter[0]/2 + 1.5, 10, height - 21.5])
-                    sphere(meter_diameter[0]/2);
-                translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]/2 - 3, height - meter_diameter[1]/2 - meter_diameter[1]/2])
-                    sphere(meter_diameter[1]/2);
+                translate([meter_diam[0]/2 + 3, 2, height])
+                    sphere(meter_diam[0]/2 + 1.5);
+                translate([meter_diam[0]/2 + 1.5, 10, height - 21.5])
+                    sphere(meter_diam[0]/2);
+                translate([meter_diam[0]/2 + 1.5, -meter_diam[0]/2 - 3, height - meter_diam[1]])
+                    sphere(meter_diam[1]/2);
             };    
             hull(){
-                translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*1.5 - 13, height - meter_diameter[1]/2 - meter_diameter[1]/2])
-                    sphere(meter_diameter[1]/2);
-                translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*2.5 - 15, height - meter_diameter[1]/2 - meter_diameter[1]/2])
-                    sphere(meter_diameter[1]/2);        
+                translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*1.5 - 13, height - meter_diam[1]])
+                    sphere(meter_diam[1]/2);
+                translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*2.5 - 15, height - meter_diam[1]])
+                    sphere(meter_diam[1]/2);        
             };
             hull(){
-                translate([meter_diameter[0]/2 + 1.5, -meter_diameter[0]*2.5 - 15, height - meter_diameter[1]/2 - meter_diameter[1]/2])
-                    sphere(meter_diameter[1]/2);  
-                translate([- 2, -meter_diameter[0]*2.5 - 15, height - 35])
+                translate([meter_diam[0]/2 + 1.5, -meter_diam[0]*2.5 - 15, height - meter_diam[1]])
+                    sphere(meter_diam[1]/2);  
+                translate([- 2, -meter_diam[0]*2.5 - 15, height - 35])
                 rotate([0, 90, 0])
-                    cylinder (0.01, meter_diameter[0], meter_diameter[0]);
+                    cylinder (0.01, meter_diam[0], meter_diam[0]);
             }; 
         };
         
@@ -203,10 +203,11 @@ difference(){
                     ]);
         union(){                                // towards pipes
             for (i = [0 : len(tubes) -1])
-            translate ([tubes_X[i], 45, 40]) rotate ([90, 0, 0]) cylinder(20, tubes[i][0]/2, tubes[i][0]/2, false);
-            
+                translate ([tubes_X[i], 45, 40])    
+                    rotate ([90, 0, 0]) cylinder(20, tubes[i][0]/2, tubes[i][0]/2, false);            
             for (i = [0 : len(tubes) -1])
-            translate ([tubes_X[i], 25.5, 40]) rotate ([90, 0, 0]) cylinder(11, tubes[i][1]/2, wideOuter/2, false);
+                translate ([tubes_X[i], 25.5, 40]) 
+                    rotate ([90, 0, 0]) cylinder(11, tubes[i][1]/2, wideOuter/2, false);
         };
     };
 };
@@ -214,22 +215,21 @@ difference(){
 
 // bellow
 difference(){
-hull(){
-translate([-30, -100, 100])cube ([3, 200,height - 100], false);
-difference(){
-    translate([-30, 0, 100])rotate ([0, 90, 0])cylinder(3, 100, 100, false);
-    translate([-30.5, -100, 101])cube ([4, 200, 100], false);
-};
-translate([-35, 0, 70])cube([15,65, 50], true);
-};
-translate([0, 12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);     //minus
-translate([0, -12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);
-translate([-33, 0, 70])cube([15,60, 45], true);
-translate([-45, 0, 30])rotate([90, 0, 0])cylinder(150, 16, 16, true);
+    hull(){
+        translate([-30, -100, 100])cube ([3, 200,height - 100], false);
+        difference(){
+            translate([-30, 0, 100])rotate ([0, 90, 0])cylinder(3, 100, 100, false);
+            translate([-30.5, -100, 101])cube ([4, 200, 100], false);
+        };
+    translate([-35, 0, 70])cube([15,65, 50], true);
+    };
+    translate([0, 12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);     //minus
+    translate([0, -12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);
+    translate([-33, 0, 70])cube([15,60, 45], true);
+    translate([-45, 0, 30])rotate([90, 0, 0])cylinder(150, 16, 16, true);
 };
 /*
 todo:
-code besser kommentieren
 x and y volumme
 chnGE NAME FOR meter diameter ( make shorter)
 */
