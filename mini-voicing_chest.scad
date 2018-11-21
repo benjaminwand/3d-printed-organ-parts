@@ -220,7 +220,7 @@ difference(){
 };
 
 
-// bellow
+// bellow, print seperately!
 difference(){
     hull(){
         translate([-30, - bellow_width/2, 100])cube ([3, bellow_width, height - 100], false);
@@ -238,7 +238,31 @@ difference(){
         translate([-45, 0, 30])rotate([90, 0, 0])cylinder(150, 16, 16, true);   // grip
     };
 };
-/*
-todo:
-keys + valves supply
-*/
+
+// insert this into the lower end of the inner valve pipe
+for (i= [0 : len(tubes) -1])
+    translate ([30 + wideOuter *i, - wideOuter - 2, 0])
+        rotate_extrude($fn=50)
+            polygon( points=[
+                [narrowInner/2 -1,0],
+                [narrowInner/2 ,0],
+                [narrowInner/2 + 0.5,0.5],
+                [narrowInner/2 + 0.5, 1.2],        
+                [narrowInner/2, 1.2],
+                [narrowInner/2, 4],
+                [narrowInner/2 -1, 5],
+                [narrowInner/2 -1, 1.2]] );
+
+// keys
+for (i= [0 : len(tubes) -1])
+    translate ([30 + (wideOuter + 2) * i , - 2 * wideOuter - 2, 0])
+        rotate_extrude($fn=50)
+            polygon( points=[
+                [0,0],
+                [wideOuter/2, 0],
+                [wideOuter/2, 2],
+                [narrowInner/2 , 2],    
+                [narrowInner/2 - 0.1, 9],
+                [narrowInner/2 -1, 10],
+                [0, 10],
+                ] );
