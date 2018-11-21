@@ -14,8 +14,11 @@ wideOuter = 11.6;
 // inner diameter of narrower valve pipe:
 narrowInner = 8.2; 
 
-// the height in your printer volume (z-axis)
-height = 190;
+// height, don't exceed your printer volume (z-axis)
+height = 200;
+
+// max y axis of your printer volume (or x)
+bellow_width = 200;
 
 // from https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Tips_and_Tricks#Add_all_values_in_a_list
 function add2(v) = [for(p=v) 1]*v;
@@ -31,7 +34,11 @@ tubes_X = [for (i= [0 : len(tubes) -1])
 ];
 
 // bellow case
-case_points = [ [0, -98.5, 1.5], [0, 98.5, 1.5], [0, -98.5, height - 1.5], [0, 98.5, height - 1.5], [-20, -98.5, 1.5], [-20, 98.5, 1.5], [-3, -98.5, height - 1.5], [-3, 98.5, height - 1.5] ];
+case_points = [ 
+    [0, - bellow_width/2 + 1.5, 1.5], [0, bellow_width/2 - 1.5, 1.5], 
+    [0, - bellow_width/2 + 1.5, height - 1.5], [0, bellow_width/2 - 1.5, height - 1.5], 
+    [-20, - bellow_width/2 + 1.5, 1.5], [-20, bellow_width/2 - 1.5, 1.5], 
+    [-3, - bellow_width/2 + 1.5, height - 1.5], [-3, bellow_width/2 - 1.5, height - 1.5] ];
         
 x_length = tubes_X[len(tubes) -1] + wideOuter/2 + 23.5;
 echo(str("x length of the resulting print: ", x_length));
@@ -83,7 +90,7 @@ difference(){
                 translate(case_points[6])sphere(1.5);
                 translate(case_points[7])sphere(1.5);
             };
-            translate([-20, -98.5, 0]) cube ([20, 197, 0.5], false);
+            translate([-20, - bellow_width/2 + 1.5, 0]) cube ([20, bellow_width - 3, 0.5], false);
         };
         union(){                            // tube holders
             rotate([90, 0, 0])                  // upper tube holder
@@ -216,20 +223,22 @@ difference(){
 // bellow
 difference(){
     hull(){
-        translate([-30, -100, 100])cube ([3, 200,height - 100], false);
+        translate([-30, - bellow_width/2, 100])cube ([3, bellow_width, height - 100], false);
         difference(){
-            translate([-30, 0, 100])rotate ([0, 90, 0])cylinder(3, 100, 100, false);
+            translate([-30, 0, bellow_width/2])rotate ([0, 90, 0])
+                cylinder(3, bellow_width/2, bellow_width/2, false);
             translate([-30.5, -100, 101])cube ([4, 200, 100], false);
         };
-    translate([-35, 0, 70])cube([15,65, 50], true);
+    translate([-35, 0, 70])cube([15, 65, 50], true);                           // valve spacer
     };
-    translate([0, 12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);     //minus
-    translate([0, -12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);
-    translate([-33, 0, 70])cube([15,60, 45], true);
-    translate([-45, 0, 30])rotate([90, 0, 0])cylinder(150, 16, 16, true);
+    union(){                                    // minus
+        translate([0, 12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);     // valves
+        translate([0, -12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);
+        translate([-33, 0, 70])cube([15,60, 45], true);                         // valve spacer
+        translate([-45, 0, 30])rotate([90, 0, 0])cylinder(150, 16, 16, true);   // grip
+    };
 };
 /*
 todo:
-x and y volumme
-chnGE NAME FOR meter diameter ( make shorter)
+keys + valves supply
 */
