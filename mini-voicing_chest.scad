@@ -229,7 +229,7 @@ difference(){
                 cylinder(3, bellow_width/2, bellow_width/2, false);
             translate([-30.5, -100, 101])cube ([4, 200, 100], false);
         };
-    translate([-35, 0, 70])cube([15, 65, 50], true);                           // valve spacer
+    translate([-35, 0, 70])cube([15, 65, 50], true);                            // valve spacer
     };
     union(){                                    // minus
         translate([0, 12, 70])rotate([0, -90, 0])cylinder(50, 7, 7, false);     // valves
@@ -240,8 +240,9 @@ difference(){
 };
 
 // insert this into the lower end of the inner valve pipe
+// you probably want to print those small things seperately
 for (i= [0 : len(tubes) -1])
-    translate ([30 + wideOuter *i, - wideOuter - 2, 0])
+    translate ([30 + wideOuter *i, - 2 * wideOuter - 2, 0])
         rotate_extrude($fn=50)
             polygon( points=[
                 [narrowInner/2 -1,0],
@@ -255,7 +256,7 @@ for (i= [0 : len(tubes) -1])
 
 // keys
 for (i= [0 : len(tubes) -1])
-    translate ([30 + (wideOuter + 2) * i , - 2 * wideOuter - 2, 0])
+    translate ([30 + (wideOuter + 2) * i , - wideOuter , 0])
         rotate_extrude($fn=50)
             polygon( points=[
                 [0,0],
