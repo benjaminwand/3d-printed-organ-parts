@@ -2,7 +2,7 @@
 
 These are various parametric FreeCAD and OpenSCAD files of 3d-printable organ parts. 
 
-One can wrap steel string around ’spring making help’-s to make ones own compression springs for instance for valves.  
+One can wrap steel string around ’spring making help’-s to make ones own compression springs for instance for valves. https://www.youtube.com/watch?v=EOjp8I1X-Z0
 
 'Balganlage' is the bellow, works pretty much like in a barrel organ. It will be connected to the wind chest with a round flex tube (like for air conditioning).
 
