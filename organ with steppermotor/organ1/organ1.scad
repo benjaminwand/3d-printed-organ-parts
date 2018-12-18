@@ -1,4 +1,5 @@
 // print each color seperately
+// works with OpenSCAD version 2018.03.17 (git 3e7fbfff) 
 
 include <all_pipes_o1.scad>;            
 include <config.scad>;
