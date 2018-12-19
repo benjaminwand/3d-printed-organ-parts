@@ -1,5 +1,6 @@
 // print each color seperately
 // works with OpenSCAD version 2018.03.17 (git 3e7fbfff) 
+// software for motors and stuff: https://github.com/jbeyerstedt/midi2steppermotors
 
 include <all_pipes_o1.scad>;            
 include <config.scad>;
