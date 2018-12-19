@@ -1,3 +1,4 @@
+// works with OpenSCAD version 2018.03.17 (git 3e7fbfff) 
 
 // outer and inner diameter of tube for the barometer
 meter_diam = [11, 8]; 
@@ -213,8 +214,8 @@ difference(){
                 translate ([tubes_X[i], 45, 40])    
                     rotate ([90, 0, 0]) cylinder(20, tubes[i][0]/2, tubes[i][0]/2, false);            
             for (i = [0 : len(tubes) -1])
-                translate ([tubes_X[i], 25.5, 40]) 
-                    rotate ([90, 0, 0]) cylinder(11, tubes[i][1]/2, wideOuter/2, false);
+                translate ([tubes_X[i], 25.5, 40])             
+                    rotate ([90, 0, 0]) cylinder(11, tubes[i][1]/2, wideOuter * 0.4, false);
         };
     };
 };
