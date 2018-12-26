@@ -1,6 +1,6 @@
 # 3d-printed-organ-parts
 
-These are various parametric FreeCAD and OpenSCAD files of 3d-printable organ parts. I keep making youtube videos as explanation, feel free to post an issue if you want something explained (so I know how it prioritize things).
+These are various parametric FreeCAD and OpenSCAD files of 3d-printable organ parts. I keep making youtube videos as explanation, feel free to post a GitHub-issue if you want something explained (so I know how it prioritize things).
 
 One can wrap steel string around ’spring making help’ to make ones own compression springs for instance for valves. 
 [Youtube link](https://www.youtube.com/watch?v=EOjp8I1X-Z0)
