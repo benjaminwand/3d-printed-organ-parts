@@ -120,9 +120,10 @@ difference(){
             for (i= [0:2:(height-10)])
             translate([meter_diam[0] +1.4, -meter_diam[0] - 14, i])   
                 cube([1, 13, 1], false);
-            for (i= [0:10:(height-10)])
-            translate([meter_diam[0] +1.8, -meter_diam[0] - 14, i])   
-                cube([1, 13, 1], false);
+            color("black")   
+                for (i= [0:10:(height-10)])
+                translate([meter_diam[0] +1.8, -meter_diam[0] - 14, i])   
+                    cube([1, 13, 1], false);
         };
             rotate([0, 90, 0])              // windchest outside
                 linear_extrude(tubes_X[len(tubes) -1] + wideOuter/2 + 3) 
