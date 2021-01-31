@@ -7,8 +7,9 @@ One can wrap steel string around ’spring making help’ to make ones own compr
 
 [Measuring air pressure in mmH2O.](https://www.youtube.com/watch?v=7snXdEoY9dA)
 
-[Exploring the Nachtigall/Vogelschrey stop](https://www.youtube.com/watch?v=Vtcz-5irMgw)
-‘Nachtigall2’ is less annoyingly synchronous when playing more than one pipe at once.
+[Here is an article about the Nachtigall files](https://benjaminwand.github.io/verbose-cv/projects/nachtigall.html)  
+[Exploring the Nachtigall/Vogelschrey stop](https://www.youtube.com/watch?v=Vtcz-5irMgw)  
+‘Nachtigall2’ is less annoyingly synchronous when playing more than one pipe at once. 
 
 ‘mini-voicing_chest.scad’ is explained [there](https://media.ccc.de/v/35c3-9768-open_source_orgelbau#t=856).
 
