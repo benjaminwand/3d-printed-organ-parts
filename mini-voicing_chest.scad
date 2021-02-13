@@ -102,7 +102,7 @@ difference(){
                         [meter_diam[0] + 5, meter_diam[0] + height - 35], 
                         [meter_diam[0] + 5, height ]
                     ]);
-            translate ([0, meter_diam[0] * -2 - 15], 0) // lower tube holder
+            translate ([0, meter_diam[0] * -2 - 15, 0]) // lower tube holder
                 cube ([meter_diam[0] + 5 , meter_diam[0] * 2 + 15, 20], false);
         };
         translate([0, 100, 0])              // bassin outside
